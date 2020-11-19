@@ -1,0 +1,14 @@
+<p>Your username - {{ user }}  <a href="{% url 'polls:logout_view' %}">Log-out</a></p><br><br>
+
+{% if question.showable %}
+    <h1>{{ question.question_text }}</h1>
+    <p>Total votes - {{ question.total_votes }}</p>
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }} - {{ choice.percent }}%</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>This poll is over</p>
+{% endif %}
+    <a href="{% url 'polls:index' %}">To the main?</a>

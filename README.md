@@ -1,0 +1,1 @@
+This is my django learning kind of project
