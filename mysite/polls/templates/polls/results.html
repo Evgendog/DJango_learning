@@ -1,5 +1,7 @@
-<p>Your username - {{ user }}  <a href="{% url 'polls:logout_view' %}">Log-out</a></p><br><br>
+{% load static %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<p>Your username - {{ user }}  <a href="{% url 'polls:logout_view' %}">Log-out</a></p>
 {% if question.showable %}
     <h1>{{ question.question_text }}</h1>
     <p>Total votes - {{ question.total_votes }}</p>
@@ -11,4 +13,15 @@
 {% else %}
     <p>This poll is over</p>
 {% endif %}
-    <a href="{% url 'polls:index' %}">To the main?</a>
+<a href="{% url 'polls:index' %}">To the main?</a>
+<br>
+<div class="proverka">
+    {% if user in question.voted_set.all %}
+        <p>It's working and now we can make each user vote only one time.</p>
+    {% else %}
+        <p>Nope, for some reasons, that unknowable for me, it's not working, but following thing is working just fine ¯\_(ツ)_/¯</p>
+    {% for voted in question.voted_set.all %}
+        <p>{{ voted.question }}(#{{ voted.question.id }}) - {{ voted.user }}(#{{ voted.user.id }})</p>
+    {% endfor %}
+    {% endif %}
+</div>

@@ -1,5 +1,7 @@
-<p>Your username - {{ user }}  <a href="{% url 'polls:logout_view' %}">Log-out</a></p><br><br>
+{% load static %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<p>Your username - {{ user }}  <a href="{% url 'polls:logout_view' %}">Log-out</a></p>
 {% if question.showable %}
     <h1>{{ question.question_text }}</h1>
     <p>{{ question.long_desc }}</p>

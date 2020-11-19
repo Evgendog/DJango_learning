@@ -1,11 +1,10 @@
 from django.utils import timezone
-from django.urls import path
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from .models import Question, Choice
+from .models import Question, Choice, Voted
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
@@ -63,7 +62,8 @@ def vote(request, question_id):
         for choice in question.choice_set.all():
             choice.percent = round(choice.votes * 100 / question.total_votes, 2)
             choice.save()
-
+        voted = Voted(question=question, user=request.user)
+        voted.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
