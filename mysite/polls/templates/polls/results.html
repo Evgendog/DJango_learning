@@ -14,14 +14,3 @@
     <p>This poll is over</p>
 {% endif %}
 <a href="{% url 'polls:index' %}">To the main?</a>
-<br>
-<div class="proverka">
-    {% if user in question.voted_set.all %}
-        <p>It's working and now we can make each user vote only one time.</p>
-    {% else %}
-        <p>Nope, for some reasons, that unknowable for me, it's not working, but following thing is working just fine ¯\_(ツ)_/¯</p>
-    {% for voted in question.voted_set.all %}
-        <p>{{ voted.question }}(#{{ voted.question.id }}) - {{ voted.user }}(#{{ voted.user.id }})</p>
-    {% endfor %}
-    {% endif %}
-</div>

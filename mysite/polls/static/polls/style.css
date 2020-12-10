@@ -5,11 +5,3 @@ li a {
 body {
     background: white url("images/gg.gif") no-repeat;
 }
-
-.proverka {
-    width: 70%;
-    margin-top: 30px;
-    border-top: 5px dashed #552375;
-    border-right: 5px dashed #552375;
-    border-bottom: 5px dashed #552375;
-}
